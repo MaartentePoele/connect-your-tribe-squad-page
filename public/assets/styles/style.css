@@ -49,23 +49,40 @@ select {
 
 section {
   padding: 2rem;
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 article {
   width: 300px;
   height: 350px;
-  border: 3px solid var(--turquoise);
+  border: 2px solid var(--turquoise);
   border-radius: 1rem;
   overflow: hidden;
+  color: var(--white);
+  box-shadow: -3px 3px var(--turquoise);
 }
 
 figure {
   width: 300px;
   height: 300px;
+  display: flex;
+  justify-content: center;
 }
 
 img {
   height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -78,8 +95,8 @@ div {
   padding: 0 0.5rem;
 }
 
-h2, p {
-  color: var(--white);
+h2,
+p {
   font-size: 1.5rem;
   font-weight: 400;
 }

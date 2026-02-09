@@ -16,26 +16,22 @@
   </form>
 
   <section>
-    <article>
-      <figure>
-        <img src="https://raw.githubusercontent.com/MaartentePoele/your-tribe-profile-card/refs/heads/main/assets/photo.jpg">
-      </figure>
-      <div>
-        <h2>Maarten te Poele</h2>
-        <p>21</p>
-      </div>
-    </article>
+    {% for person in persons %}
+      <article>
+        <figure>
+          {% if person.mugshot %}
+            <img src="https://fdnd.directus.app/items/person/{{ person.avatar }}" alt="Profile picture">
+          {% else %}
+            <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
+          {% endif %}
+        </figure>
+        <div>
+          <h2>{{ person.name }}</h2>
+          <p>{{ person.birthdate | date: '%y' }}</p>
+        </div>
+      </article>
+    {% endfor %}
   </section>
-
-  {% comment %}
-    <ul>
-      {% for person in persons %}
-        <li>
-          <a href="/student/{{ person.id }}">{{ person.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endcomment %}
 </main>
 
 {% render 'partials/foot.liquid', squads: squads %}
