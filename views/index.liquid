@@ -1,13 +1,5 @@
 {% render 'partials/head.liquid', title: 'Squad page' %}
 
-{% comment %}
-  <ul>
-    {% for person in persons %}
-      <li><a href="/student/{{ person.id }}">{{ person.name }}</a></li>
-    {% endfor %}
-  </ul>
-{% endcomment %}
-
 <header>
   <h1>FDND Frontenders</h1>
 </header>
@@ -22,6 +14,28 @@
       <option value="">leeftijd oud-jong</option>
     </select>
   </form>
+
+  <section>
+    <article>
+      <figure>
+        <img src="https://raw.githubusercontent.com/MaartentePoele/your-tribe-profile-card/refs/heads/main/assets/photo.jpg">
+      </figure>
+      <div>
+        <h2>Maarten te Poele</h2>
+        <p>21</p>
+      </div>
+    </article>
+  </section>
+
+  {% comment %}
+    <ul>
+      {% for person in persons %}
+        <li>
+          <a href="/student/{{ person.id }}">{{ person.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endcomment %}
 </main>
 
 {% render 'partials/foot.liquid', squads: squads %}
