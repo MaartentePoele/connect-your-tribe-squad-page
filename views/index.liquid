@@ -16,19 +16,57 @@
   </form>
 
   <section>
+    {% comment %} Loopt over elk persoon {% endcomment %}
     {% for person in persons %}
-      <a href="{{ person.website }}">
+
+      {% comment %} Checkt of er een profilecard is gelinkt {% endcomment %}
+      {% if person.profilecard %}
+        <a href="{{ person.profilecard }}" target="blank">
+      
+      {% comment %} Checkt of er een persoonlijke website is gelinkt {% endcomment %}
+      {% elsif person.website %}
+        <a href="{{ person.website }}" target="blank">
+      
+      {% comment %} Anders wordt er gelinkt naar de repo {% endcomment %}
+      {% else %}
+        <a href="https://github.com/{{ person.github_handle }}/connect-your-tribe-squad-page" target="blank">
+      {% endif %}
+
         <article>
           <figure>
+            {% comment %} Checkt of er een mugshot is gelinkt {% endcomment %}
             {% if person.mugshot %}
               <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
+            
+            {% comment %} Checkt of er een avatar is gelinkt {% endcomment %}
+            {% elsif person.avatar %}
+              <img src="{{ person.avatar }}?width=500" alt="Avatar">
+            
+            {% comment %} Anders wordt er een dummy image ingeladen {% endcomment %}
             {% else %}
-              <img src="https://kopo.nl/KOP3.JPG">
+              <img src="/assets/images/Default_Male_Mii.png">
             {% endif %}
+
           </figure>
           <div>
-            <h2>{{ person.name }}</h2>
-            <p>{{ person.birthdate | date: '%y' }}</p>
+            {% comment %} Laat alleen de voornaam zien {% endcomment %}
+            {% assign nameArray = person.name | split: " " %}
+            <h2>{{ nameArray[0] }}</h2>
+
+            {% comment %} Checkt of er een geboortedatum is gelinkt {% endcomment %}
+            {% if person.birthdate %}
+
+              {% comment %} Zet de geboortedatum om in leeftijd {% endcomment %}
+              {% assign birthdate = person.birthdate | date: '%s' %}
+              {% assign now = 'now' | date: '%s' %}
+              {% assign diffSeconds = now | minus: birthdate %}
+              {% assign age = diffSeconds | divided_by: 31557600 %}
+              <p>{{ age | floor }}</p>
+
+            {% comment %} Anders wordt er een vraagteken ingeladen {% endcomment %}
+            {% else %}
+              <p>?</p>
+            {% endif %}
           </div>
         </article>
       </a>
