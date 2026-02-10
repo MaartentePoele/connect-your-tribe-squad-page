@@ -8,28 +8,30 @@
   <form>
     <label>Sorteer op:</label>
     <select>
-      <option value="">naam a-z</option>
-      <option value="">naam z-a</option>
-      <option value="">leeftijd jong-oud</option>
-      <option value="">leeftijd oud-jong</option>
+      <option value="a-z">naam a-z</option>
+      <option value="z-a">naam z-a</option>
+      <option value="jong-oud">leeftijd jong-oud</option>
+      <option value="oud-jong">leeftijd oud-jong</option>
     </select>
   </form>
 
   <section>
     {% for person in persons %}
-      <article>
-        <figure>
-          {% if person.mugshot %}
-            <img src="https://fdnd.directus.app/items/person/{{ person.avatar }}" alt="Profile picture">
-          {% else %}
-            <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
-          {% endif %}
-        </figure>
-        <div>
-          <h2>{{ person.name }}</h2>
-          <p>{{ person.birthdate | date: '%y' }}</p>
-        </div>
-      </article>
+      <a href="{{ person.website }}">
+        <article>
+          <figure>
+            {% if person.mugshot %}
+              <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
+            {% else %}
+              <img src="https://kopo.nl/KOP3.JPG">
+            {% endif %}
+          </figure>
+          <div>
+            <h2>{{ person.name }}</h2>
+            <p>{{ person.birthdate | date: '%y' }}</p>
+          </div>
+        </article>
+      </a>
     {% endfor %}
   </section>
 </main>
