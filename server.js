@@ -69,9 +69,9 @@ app.get("/", async function (request, response) {
   } else if (request.query.sort == "name:desc") {
     params["sort"] = "-name";
   } else if (request.query.sort == "age:asc") {
-    params["sort"] = "birthdate";
-  } else if (request.query.sort == "age:desc") {
     params["sort"] = "-birthdate";
+  } else if (request.query.sort == "age:desc") {
+    params["sort"] = "birthdate";
   } else {
     params["sort"] = "name";
   }
