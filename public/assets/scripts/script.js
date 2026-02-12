@@ -1,3 +1,4 @@
+// Geeft de link die is ingeklikt een border
 const param = window.location.search;
 
 if (param == "?sort=name:asc") {
