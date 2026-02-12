@@ -52,9 +52,17 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", async function (request, response) {
   // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
   const params = {
-    // Sorteer op naam
-
-    // sort: "name",
+    // Sorteer op basis van de url
+    sort:
+      request.query.sort == "name:asc"
+        ? "name"
+        : request.query.sort == "name:desc"
+          ? "-name"
+          : request.query.sort == "age:asc"
+            ? "-birthdate"
+            : request.query.sort == "age:desc"
+              ? "birthdate"
+              : "name",
 
     // Geef aan welke data je per persoon wil terugkrijgen
     fields: "*,squads.*",
@@ -63,18 +71,6 @@ app.get("/", async function (request, response) {
     "filter[squads][squad_id][tribe][name]": "FDND Jaar 1",
     "filter[squads][squad_id][cohort]": "2526",
   };
-
-  if (request.query.sort == "name:asc") {
-    params["sort"] = "name";
-  } else if (request.query.sort == "name:desc") {
-    params["sort"] = "-name";
-  } else if (request.query.sort == "age:asc") {
-    params["sort"] = "-birthdate";
-  } else if (request.query.sort == "age:desc") {
-    params["sort"] = "birthdate";
-  } else {
-    params["sort"] = "name";
-  }
 
   const personResponse = await fetch(
     "https://fdnd.directus.app/items/person/?" + new URLSearchParams(params),

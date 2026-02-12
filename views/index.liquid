@@ -1,20 +1,17 @@
 {% render 'partials/head.liquid', title: 'Squad page' %}
 
 <header>
-  <h1>FDND Frontenders</h1>
+  <h1><a href="/">FDND Frontenders</a></h1>
 </header>
 
 <main>
-  <form>
-    <label>Sorteer op:</label>
-    <select>
-      <option value="https://connect-your-tribe-squad-page-zu4l.onrender.com/?sort=name:asc">naam a-z</option>
-      <option value="https://connect-your-tribe-squad-page-zu4l.onrender.com/?sort=name:desc">naam z-a</option>
-      <option value="https://connect-your-tribe-squad-page-zu4l.onrender.com/?sort=age:asc">leeftijd jong-oud</option>
-      <option value="https://connect-your-tribe-squad-page-zu4l.onrender.com/?sort=age:desc">leeftijd oud-jong</option>
-    </select>
-  </form>
-
+  <nav>
+    <a class="name-asc" href="?sort=name:asc">naam a-z</a>
+    <a class="name-desc" href="?sort=name:desc">naam z-a</a>
+    <a class="age-asc" href="?sort=age:asc">leeftijd jong-oud</a>
+    <a class="age-desc" href="?sort=age:desc">leeftijd oud-jong</a>
+  </nav>
+  
   <section>
     {% comment %} Loopt over elk persoon {% endcomment %}
     {% for person in persons %}
@@ -40,7 +37,7 @@
             
             {% comment %} Checkt of er een avatar is gelinkt {% endcomment %}
             {% elsif person.avatar %}
-              <img src="{{ person.avatar }}?width=500" alt="Avatar">
+              <img src="{{ person.avatar }}" alt="Avatar">
             
             {% comment %} Anders wordt er een dummy image ingeladen {% endcomment %}
             {% else %}
