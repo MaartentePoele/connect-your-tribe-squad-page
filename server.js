@@ -88,6 +88,7 @@ app.get("/", async function (request, response) {
   response.render("index.liquid", {
     persons: personResponseJSON.data,
     squads: squadResponseJSON.data,
+    activeSort: request.query.sort
   });
 });
 

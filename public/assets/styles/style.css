@@ -57,7 +57,6 @@ nav {
     border-radius: 1rem;
     background-color: var(--turquoise);
     color: var(--blueberry);
-    border: 3px solid var(--turquoise);
   }
 }
 
