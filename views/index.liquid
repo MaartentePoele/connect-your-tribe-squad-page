@@ -6,10 +6,10 @@
 
 <main>
   <nav>
-    <p>Sorteer op:</p>
+    <p>Sorteer kaartjes op:</p>
     {% comment %} Geeft de link een border als erop is geklikt {% endcomment %}
-    <a class="{% if activeSort == "name:asc" %} active {% endif %}" href="?sort=name:asc">A-Z</a>
-    <a class="{% if activeSort == "name:desc" %} active {% endif %}" href="?sort=name:desc">Z-A</a>
+    <a class="{% if activeSort == "name:asc" %} active {% endif %}" href="?sort=name:asc">Naam a-z</a>
+    <a class="{% if activeSort == "name:desc" %} active {% endif %}" href="?sort=name:desc">Naam z-a</a>
     <a class="{% if activeSort == "age:asc" %} active {% endif %}" href="?sort=age:asc">Jong-Oud</a>
     <a class="{% if activeSort == "age:desc" %} active {% endif %}" href="?sort=age:desc">Oud-Jong</a>
   </nav>
