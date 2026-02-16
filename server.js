@@ -88,15 +88,16 @@ app.get("/", async function (request, response) {
   response.render("index.liquid", {
     persons: personResponseJSON.data,
     squads: squadResponseJSON.data,
-    activeSort: request.query.sort
+    activeSort: request.query.sort,
   });
 });
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
-app.post("/", async function (request, response) {
+app.post("/berichten", async function (request, response) {
   // Je zou hier data kunnen opslaan, of veranderen, of wat je maar wilt
   // Er is nog geen afhandeling van POST, redirect naar GET op /
-  response.redirect(303, "/");
+  messages.push(request.body.message);
+  response.redirect(303, "/berichten");
 });
 
 // Maak een GET route voor een detailpagina met een route parameter, id
@@ -124,4 +125,12 @@ app.set("port", process.env.PORT || 8000);
 app.listen(app.get("port"), function () {
   // Toon een bericht in de console en geef het poortnummer door
   console.log(`Application started on http://localhost:${app.get("port")}`);
+});
+
+const messages = [];
+
+app.get("/berichten", async function (request, response) {
+  response.render("messages.liquid", {
+    messages: messages,
+  });
 });

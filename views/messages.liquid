@@ -1,0 +1,11 @@
+<ol>
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+</ol>
+
+<form method="POST" action="/berichten">
+
+  <input type="text" name="message">
+  <button type="submit">Submit</button>
+</form>
